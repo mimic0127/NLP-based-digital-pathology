@@ -17,14 +17,25 @@ We used two environments to implement our paper due to the different versions of
 **Models Without MobileViT**
 
 - ``python 3.8``
-
+- ``torch 1.8.1+cu111``
+- ``torchvision 0.9.1+cu111``
+- ``timm 0.5.4``
 
 **MobileViT**
 
 - ``python 3.8``
+- ``torch 1.8.1+cu111``
+- ``torchvision 0.9.1+cu111``
+- ``timm 0.6.8``
 
 
-## Image Preprocessing
+## Code
+
+Firstly shoud:
+
+```bash
+cd NLP-based-digital-pathology
+```
 
 **Extract Tiles**
 
@@ -36,9 +47,55 @@ python extractTiles.py -s slide_path -o out_path -ps pic_save_path
 
 **Tissue Classification**
 
-(Swin-T)-based Tissue classifier can be trained by from (our lab)[https://github.com/Boomwwe/SOTA_MSI_prediction].
+(Swin-T)-based Tissue classifier can be trained by from [our lab](https://github.com/Boomwwe/SOTA_MSI_prediction).
 
 ```bash
-python Tissue_classfier.py -tr train_path -  
+python Tissue_classfier.py -tr train_path -te test_path -ps model_save_path 
 ```
 
+**Tile-Level Label Training**
+
+Take MSI status prediction as an example. BRAF muation and CIMP status are similar as MSI (Only should change the ground truth file path in patch_dataloader.py). 
+
+Parameters of models pretrained on ImageNet and code of [Sequecner2D module](https://arxiv.org/abs/2205.01972](https://github.com/okojoalg/sequencer) can be dwonloaded from baiduyun:链接: https://pan.baidu.com/s/1sHCx929L6KltFi5FsuOL9Q 提取码: 7buf
+
+When training models without MobileViT
+
+```bash
+python MSI/train/train_external.py --TCGA_folder_path test_folder_path\
+                                   --MCO_MSS_path train_folder_path_with_MSS\
+                                   --MCO_MSI_path train_folder_path_with_MSI\
+                                   --model_name model_name\
+                                   --output_dir output_folder\
+                                   --model_save_path model_save_path
+```
+
+When training MobileViT, you should change the python environment and train:
+
+```bash
+python MSI/train/train_external_mobilevit.py --TCGA_folder_path test_folder_path\
+                                   --MCO_MSS_path train_folder_path_with_MSS\
+                                   --MCO_MSI_path train_folder_path_with_MSI\
+                                   --model_name model_name\
+                                   --output_dir output_folder\
+                                   --model_save_path model_save_path
+```
+
+
+**Patient-Level Label Prediction**
+
+```bash
+python MSI/pred/patient_pred.py --TCGA_folder_path prediction_folder_path\
+                                --model_name model_name\
+                                --model_save_path model_save_path\
+                                --output_dir output_folder
+```
+
+Like training, when prediction by MobieViT:
+
+```bash
+python MSI/pred/patient_pred_mobilevit.py --TCGA_folder_path prediction_folder_path\
+                                --model_name model_name\
+                                --model_save_path model_save_path\
+                                --output_dir output_folder
+```
