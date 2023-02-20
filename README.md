@@ -28,5 +28,17 @@ We used two environments to implement our paper due to the different versions of
 
 **Extract Tiles**
 
-We extracted tiles by **ExtractTiles.py**. The origin of this code is from kather lab.
+We extracted tiles by **extractTiles.py**. The origin of this code is from [kather lab](https://github.com/KatherLab/preProcessing).
+
+```bash
+python extractTiles.py -s slide_path -o out_path -ps pic_save_path
+```
+
+**Tissue Classification**
+
+(Swin-T)-based Tissue classifier can be trained by from (our lab)[https://github.com/Boomwwe/SOTA_MSI_prediction].
+
+```bash
+python 
+```
 
