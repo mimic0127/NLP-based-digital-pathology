@@ -39,6 +39,6 @@ python extractTiles.py -s slide_path -o out_path -ps pic_save_path
 (Swin-T)-based Tissue classifier can be trained by from (our lab)[https://github.com/Boomwwe/SOTA_MSI_prediction].
 
 ```bash
-python 
+python Tissue_classfier.py -tr train_path -  
 ```
 
