@@ -57,7 +57,7 @@ python Tissue_classfier.py -tr train_path -te test_path -ps model_save_path
 
 Take MSI status prediction as an example. BRAF muation and CIMP status are similar as MSI (Only should change the ground truth file path in patch_dataloader.py). 
 
-Parameters of models pretrained on ImageNet and code of [Sequecner2D module](https://arxiv.org/abs/2205.01972](https://github.com/okojoalg/sequencer) can be dwonloaded from baiduyun:链接: https://pan.baidu.com/s/1sHCx929L6KltFi5FsuOL9Q 提取码: 7buf
+Parameters of models pretrained on ImageNet and code of [Sequecner2D module](https://github.com/okojoalg/sequencer) can be dwonloaded from baiduyun:链接: https://pan.baidu.com/s/1sHCx929L6KltFi5FsuOL9Q 提取码: 7buf
 
 When training models without MobileViT
 
