@@ -31,13 +31,13 @@ We used two environments to implement our paper due to the different versions of
 
 ## Code
 
-Firstly shoud:
+Firstly should:
 
 ```bash
 cd NLP-based-digital-pathology
 ```
 
-**Extract Tiles**
+### **Extract Tiles**
 
 We extracted tiles by **extractTiles.py**. The origin of this code is from [kather lab](https://github.com/KatherLab/preProcessing).
 
@@ -45,7 +45,7 @@ We extracted tiles by **extractTiles.py**. The origin of this code is from [kath
 python extractTiles.py -s slide_path -o out_path -ps pic_save_path
 ```
 
-**Tissue Classification**
+### **Tissue Classification**
 
 (Swin-T)-based Tissue classifier can be trained by from [our lab](https://github.com/Boomwwe/SOTA_MSI_prediction).
 
@@ -53,7 +53,7 @@ python extractTiles.py -s slide_path -o out_path -ps pic_save_path
 python Tissue_classfier.py -tr train_path -te test_path -ps model_save_path 
 ```
 
-**Tile-Level Label Training**
+### **Tile-Level Label Training**
 
 Take MSI status prediction as an example. BRAF muation and CIMP status are similar as MSI (Only should change the ground truth file path in patch_dataloader.py). 
 
@@ -82,7 +82,7 @@ python MSI/train/train_external_mobilevit.py --TCGA_folder_path test_folder_path
 ```
 
 
-**Patient-Level Label Prediction**
+### **Patient-Level Label Prediction**
 
 ```bash
 python MSI/pred/patient_pred.py --TCGA_folder_path prediction_folder_path\
